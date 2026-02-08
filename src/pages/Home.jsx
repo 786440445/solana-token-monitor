@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Header from '../components/Header/Header';
-import TokenList from '../components/TokenList/TokenList';
-import TokenDetail from '../components/TokenDetail/TokenDetail';
-import FilterPanel from '../components/FilterPanel/FilterPanel';
-import Stats from '../components/Stats/Stats';
-import { useSolanaTokens, useTokenRefresh } from '../hooks/useSolanaTokens';
-import { LoadingGrid } from '../components/common';
+import Header from '../components/Header/Header.jsx';
+import TokenList from '../components/TokenList/TokenList.jsx';
+import TokenDetail from '../components/TokenDetail/TokenDetail.jsx';
+import FilterPanel from '../components/FilterPanel/FilterPanel.jsx';
+import Stats from '../components/Stats/Stats.jsx';
+import { useSolanaTokens, useTokenRefresh } from '../hooks/useSolanaTokens.js';
+import { LoadingGrid } from '../components/common/index.jsx';
 
 // 创建 QueryClient
 const queryClient = new QueryClient({

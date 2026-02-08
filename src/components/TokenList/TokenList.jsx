@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TokenCard from '../TokenCard';
+import TokenCard from '../TokenCard/TokenCard.jsx';
 import { LoadingSpinner } from '../common';
 
 const TokenList = ({ 

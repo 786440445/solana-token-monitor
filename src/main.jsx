@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './pages/Home';
+import App from './pages/Home.jsx';
 import './index.css';
-import { WalletContextProvider } from './hooks/useWallet';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <WalletContextProvider>
-      <App />
-    </WalletContextProvider>
+    <App />
   </React.StrictMode>
 );
