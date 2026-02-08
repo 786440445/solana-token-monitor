@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { Search, Menu, X, Sun, Moon, RefreshCw } from 'lucide-react';
+import { Search, Menu, X, Sun, Moon, RefreshCw, Star } from 'lucide-react';
 
 const Header = ({ 
   onSearch, 
   onRefresh, 
   isRefreshing,
-  walletAddress,
-  onConnectWallet 
+  onShowFavorites,
+  favoritesCount = 0,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +29,10 @@ const Header = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <div className="flex-shrink-0">
+            <div 
+              className="flex-shrink-0 cursor-pointer"
+              onClick={() => onShowFavorites?.(false)}
+            >
               <h1 className="text-xl font-bold text-primary">
                 🚀 Solana Token Monitor
               </h1>
@@ -59,6 +62,23 @@ const Header = ({
 
           {/* 右侧操作 */}
           <div className="flex items-center space-x-4">
+            {/* 收藏按钮 */}
+            {onShowFavorites && (
+              <button
+                onClick={() => onShowFavorites(true)}
+                className="relative p-2 rounded-lg hover:bg-surfaceHover transition-colors cursor-pointer"
+                title="查看收藏"
+              >
+                <Star className="h-5 w-5 text-warning" />
+                {favoritesCount > 0 && (
+                  <span className="absolute -top-1 -right-1 h-4 w-4 bg-warning text-background 
+                                   text-xs rounded-full flex items-center justify-center">
+                    {favoritesCount > 9 ? '9+' : favoritesCount}
+                  </span>
+                )}
+              </button>
+            )}
+
             {/* 刷新按钮 */}
             <button
               onClick={onRefresh}
@@ -125,6 +145,21 @@ const Header = ({
                 />
               </div>
             </form>
+
+            {/* 收藏按钮 */}
+            {onShowFavorites && (
+              <button
+                onClick={() => {
+                  onShowFavorites(true);
+                  setIsMenuOpen(false);
+                }}
+                className="w-full flex items-center space-x-2 px-4 py-2 rounded-lg 
+                         hover:bg-surfaceHover transition-colors mb-2 cursor-pointer"
+              >
+                <Star className="h-5 w-5 text-warning" />
+                <span>我的收藏 ({favoritesCount})</span>
+              </button>
+            )}
 
             {/* 移动端钱包按钮 */}
             <div className="block sm:hidden mb-4">
